@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 function Login() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -9,6 +10,8 @@ function Login() {
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
+
+  const { updateUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ function Login() {
         email: username,
         password,
       });
+      updateUser(response.data.newUser);
       if (response.data.newUser.role === "admin") {
         navigate("/AdminDashboard");
       } else {

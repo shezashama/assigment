@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardCard from '../Components/DashboardCard';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
 function AdminDashBoard() {
-
+    const [payments, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/user/count');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+  
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+  
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    }
     const logout = async () => {
         try {
           const logOut = await axios.get("/user/logout");
@@ -48,12 +77,12 @@ function AdminDashBoard() {
             {/* <!-- Sidebar --> */}
             <div style={sidebar}>
                 <a style={sidebarA} href="#" className="active"><i className="fa-home fas"></i> Dashboard</a>
-                <Link to={'/product'}><a style={sidebarA} href="#"><i className="fa-box fas"></i> Products</a></Link>
-                <a style={sidebarA} href="#"><i className="fa-users fas"></i> Customers</a>
-                <a style={sidebarA} href="#"><i className="fa-chart-bar fas"></i> Sales</a>
-                <a style={sidebarA} href="#"><i className="fa-cog fas"></i> Settings</a>
+                <Link to={'/product'}><a style={sidebarA} href="#"><i className="fa-box fas"></i> Add Products</a></Link>
+                <Link to={'/allproduct'}><a style={sidebarA} href="#"><i className="fa-box fas"></i> View Products</a></Link>
+                <Link to={'/allSales'}><a style={sidebarA} href="#"><i className="fa-box fas"></i>View Sales</a></Link>
+                <Link to={'/allDetails'}><a style={sidebarA} href="#"><i className="fa-users fas"></i>Users</a></Link>
                 <a  style={sidebarA} onClick={logout}><span style={{cursor:'pointer'}}>Logout</span></a>
-
+              
             </div>
 
             <div style={content}>
@@ -63,21 +92,21 @@ function AdminDashBoard() {
                         <DashboardCard
                             bgColor="bg-info"
                             title="Total Product"
-                            text="100"
+                            text={payments.productCount}
                         />
                     </div>
                     <div className="col-md-4">
                         <DashboardCard
                             bgColor="bg-success"
                             title="Total Customers"
-                            text="500"
+                            text={payments.userCount}
                         />
                     </div>
                     <div className="col-md-4">
                         <DashboardCard
                             bgColor="bg-warning"
                             title="Total Sales"
-                            text="$50,000"
+                            text={payments.paymentCount}
                         />
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from 'multer'
 const router = Router();
 import path from "path";
-import { addProduct, getAllproduct } from "../controller/ProductController.js";
+import { addProduct, deleteProduct, getAllproduct, oneProduct, productUpdate } from "../controller/ProductController.js";
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,6 +19,11 @@ const upload = multer({ storage: storage });
 // Modify the route to include multer middleware
 router.route("/addproduct").post(upload.single('image'), addProduct);
 router.route("/getAll").get(getAllproduct);
+router.route("/delete/:id").patch(deleteProduct);
+router.route("/product/:id").get(oneProduct);
+router.route("/updateproduct/:id").patch(upload.single('image'), productUpdate);
+
+
 
 
 

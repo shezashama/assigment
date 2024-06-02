@@ -10,6 +10,13 @@ import AdminDashBoard from "./Pages/AdminDashBoard";
 import CusDashboard from "./Pages/CusDashboard";
 import Product from "./Pages/Product";
 import ShopCart from "./Pages/ShopCart";
+import Allproduct from "./Pages/Allproduct";
+import Payment from "./Pages/Payment";
+import ShowSales from "./Pages/ShowSales";
+import UserDetails from "./Pages/UserDetails";
+import EditProduct from "./Pages/EditProduct";
+
+
 
 export const routes = [
     {
@@ -60,4 +67,28 @@ export const routes = [
         path: "/product",
         element: <Product/>,
     },
+
+    {
+        path:'/allproduct',
+        element:<Allproduct/>
+    },
+    {
+        path:'/product-edit/:id',
+        element:<EditProduct/>
+    },
+    {
+        path:'/payment',
+        element:<Payment/>
+    },
+    {
+        path:'/allSales',
+        element:<ShowSales/>
+    },
+    {
+        path:'/allDetails',
+        element:<UserDetails/>
+    },
+  
+  
+  
 ];

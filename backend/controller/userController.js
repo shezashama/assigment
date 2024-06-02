@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import user from "../model/userModel.js";
 import asyncErrorHandler from "../utils/asyncErrorHandler.js";
 import { CustomError } from "../utils/customerError.js";
+import Payment from "../model/salesModel.js";
+import prodcut from "../model/productModel.js";
 
 const singToken = (id, name) => {
   return jwt.sign({ id, name }, process.env.JWT_SECRET, {
@@ -114,9 +116,35 @@ const logOutUser = asyncErrorHandler(async (req, res, next) => {
   }),
     res.status(200).json({ message: "log out" });
 });
+
+const getAllusers = asyncErrorHandler(async (req, res, next) => {
+  const all= await user.find();
+
+  res.status(200).json(all);
+});
+
+const getCounts = asyncErrorHandler(async (req, res, next) => {
+  try {
+    const userCount = await user.countDocuments();
+    const productCount = await prodcut.countDocuments();
+    const paymentCount = await Payment.countDocuments();
+
+    return res.status(200).json({
+      userCount,
+      productCount,
+      paymentCount,
+    });
+  } catch (err) {
+    const error = new CustomError('Failed to fetch counts', 500);
+    return next(error);
+  }
+});
+
 export {
   registerUser,
   loginUser,
   getUser,
-  logOutUser
+  logOutUser,
+  getAllusers,
+  getCounts
 };

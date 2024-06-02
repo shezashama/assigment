@@ -2,16 +2,21 @@ import React, { useContext } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import { CartContext } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function ShopCart() {
     const { cart, updateQuantity, removeFromCart, total } = useContext(CartContext);
-
+    const navigate = useNavigate();
     const handleQuantityChange = (item, increment) => {
       const newQuantity = item.quantity + increment;
       if (newQuantity > 0) {
         updateQuantity(item._id, newQuantity);
       }
     };
+    const handlePayment = () => {
+      navigate('/payment');
+    };
+
   
     return (
       <>
@@ -40,6 +45,10 @@ function ShopCart() {
               ))}
               <div className="cart-total">
                 <h3>Total: ${total}</h3>
+              </div>
+              <div className='row d-flex justify-content-center'>
+
+              <button className='btn btn-primary col-md-4' onClick={handlePayment}>checkout</button>
               </div>
             </div>
           )}

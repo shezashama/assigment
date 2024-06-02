@@ -19,7 +19,9 @@ const addProduct = asyncErrorHandler(async (req, res, next) => {
 
     await newprodcut.save();
 
-    return res.status(201).json({ message: "Add product Successfull", newprodcut });
+    return res
+      .status(201)
+      .json({ message: "Add product Successfull", newprodcut });
   } catch (err) {
     const error = new CustomError(err, 404);
     return next(error);
@@ -28,61 +30,67 @@ const addProduct = asyncErrorHandler(async (req, res, next) => {
 
 // all product
 const getAllproduct = asyncErrorHandler(async (req, res, next) => {
-  const allproduct= await prodcut.find({isActive:true});
+  const allproduct = await prodcut.find({ isActive: true });
 
   res.status(200).json(allproduct);
 });
 
 // // one vehicle
 
-// const oneVehicle = asyncErrorHandler(async (req, res, next) => {
-//   const id = req.params.id;
-//   const onevehicle = await vehicle.findById(id);
-//   if (!onevehicle) {
-//     const error = new CustomError("vehicle not available", 400);
-//     return next(error);
-//   }
+const oneProduct = asyncErrorHandler(async (req, res, next) => {
+  const id = req.params.id;
+  const oneProduct = await prodcut.findById(id);
+  if (!oneProduct) {
+    const error = new CustomError("product not available", 400);
+    return next(error);
+  }
 
-//   return res.status(200).send(onevehicle);
-// });
+  return res.status(200).send(oneProduct);
+});
 
 // // update details vehicle
-// const vehilcleUpdate = asyncErrorHandler(async (req, res, next) => {
-//   const { id } = req.params;
-//   const {
-//     vehicleName,
-//     vehicleNo,
-//     initialKM,
-//     condition,
-//     vehicletype,
-//     seatCapacity,
-//     image,
-//   } = req.body;
-//   const updatedVehicle = await vehicle.findByIdAndUpdate(
-//     id,
-//     {
-//       vehicleName,
-//       vehicleNo,
-//       initialKM,
-//       condition,
-//       vehicletype,
-//       seatCapacity,
-//       image,
-//     },
-//     { new: true }
-//   );
-//   res.status(200).json({message:"update success"});
-// });
+const productUpdate = asyncErrorHandler(async (req, res, next) => {
+  const { id } = req.params;
+  const { productName, price, color, quantity } = req.body;
+  let updateFields = {
+    productName,
+    price,
+    color,
+    quantity
+  };
 
-// const vehicleDelete=asyncErrorHandler(async(req,res,next)=>{
-//   const vehicleStatus = await vehicle.findByIdAndUpdate(
-//     req.params.id,
-//     {
-//       isActive: false,
-//     },
-//     { new: true }
-//   );
-//   res.json({ message: "ok", vehicleStatus });
-// });
+  // Check if there is a new file uploaded
+  if (req.file) {
+    // If yes, update the image path
+    updateFields.image = req.file.path;
+  }
 
-export { addProduct,getAllproduct};
+  try {
+    const updatedProduct = await prodcut.findByIdAndUpdate(
+      id,
+      updateFields,
+      { new: true }
+    );
+    
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json({ message: "Update success" });
+  } catch (error) {
+    const customError = new CustomError('Failed to update product', 500);
+    return next(customError);
+  }
+});
+const deleteProduct = asyncErrorHandler(async (req, res, next) => {
+  const productStatus = await prodcut.findByIdAndUpdate(
+    req.params.id,
+    {
+      isActive: false,
+    },
+    { new: true }
+  );
+  res.json({ message: "ok", productStatus });
+});
+
+export { addProduct, getAllproduct, deleteProduct, oneProduct,productUpdate};

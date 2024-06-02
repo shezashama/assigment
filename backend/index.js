@@ -7,6 +7,8 @@ import userRouter from "./router/userRouter.js";
 import { CustomError } from "./utils/customerError.js";
 import cors from "cors";
 import productRouter from "./router/productRouter.js";
+import salesRouter from "./router/salesRouter.js";
+
 
 dotenv.config();
 const app = express();
@@ -26,6 +28,8 @@ app.use("/user", userRouter);
 
 
 app.use("/product", productRouter);
+app.use("/sales",salesRouter);
+
 
 
 app.all("*", (req, res, next) => {

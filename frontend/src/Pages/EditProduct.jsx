@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import DashboardCard from "../Components/DashboardCard";
+import React, { useEffect, useState } from "react";;
 import { Link } from "react-router-dom";
-function Product() {
+import { useParams } from "react-router-dom";
+
+function EditProduct() {
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [productData, setProductData] = useState({
@@ -13,6 +13,26 @@ function Product() {
     quantity: "",
     image: null,
   });
+  const [product,setProduct]=useState('')
+  const {id}=useParams();
+  if (id) {
+    useEffect(() => {
+      const fetchProduct = async () => {
+        try {
+          const response = await axios.get(`http://localhost:5000/product/product/${id}`);
+          setProductData(response.data);
+          
+        } catch (err) {
+         console.log(err)
+    
+        }
+      };
+      fetchProduct();
+    }, []);
+  }
+
+
+  console.log(product);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductData((prevData) => ({
@@ -43,8 +63,8 @@ function Product() {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/product/addproduct",
+      const response = await axios.patch(
+        `http://localhost:5000/product/updateproduct/${id}`,
         formData,
         {
           headers: {
@@ -53,6 +73,7 @@ function Product() {
         }
       );
       if (response.data.message) {
+        
         setProductData({
           productName: "",
           price: "",
@@ -61,6 +82,7 @@ function Product() {
           image: null,
         });
         setMessage(response.data.message);
+
       }
     } catch (error) {
       setErrMsg("Fail Add");
@@ -200,7 +222,7 @@ function Product() {
                     id="image"
                     name="image"
                     onChange={handleFileChange}
-                    required
+
                   />
                 </div>
               </div>
@@ -222,4 +244,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default EditProduct;

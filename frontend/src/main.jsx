@@ -8,15 +8,19 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { CartProvider } from './context/CartContext.jsx';
+import { CartProvider } from './context/CartContext';
+import { UserProvider } from './context/UserContext';
+
 
 const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <UserProvider>
     <CartProvider>
 
     <RouterProvider router={router} />
     </CartProvider>
+    </UserProvider>
   </React.StrictMode>,
 )
