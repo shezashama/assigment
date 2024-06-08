@@ -218,53 +218,7 @@ function Header() {
                           </ul>
                         </li>
 
-                        <li className="has-sub menu-item">
-                          <a
-                            href="#"
-                            className="d-flex align-item-center item-anchor"
-                            data-effect="Pages"
-                          >
-                            Pages
-                          </a>
-                          <ul className="submenu">
-                            <li>
-                              <a
-                                href="coming-soon.html"
-                                className="item-anchor"
-                              >
-                                Coming soon
-                                <span className="text-primary"> (PRO)</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="login.html" className="item-anchor">
-                                Login
-                                <span className="text-primary"> (PRO)</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="faqs.html" className="item-anchor">
-                                FAQs<span className="text-primary"> (PRO)</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="styles.html" className="item-anchor">
-                                Styles
-                              </a>
-                            </li>
-                            <li>
-                              <a href="thank-you.html" className="item-anchor">
-                                Thankyou
-                              </a>
-                            </li>
-                            <li>
-                              <a href="error.html" className="item-anchor">
-                                Error page
-                                <span className="text-primary"> (PRO)</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
+                      
 
                         <li className="has-sub menu-item">
                           <Link

@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useUser } from "../context/UserContext";
 import { CartContext } from "../context/CartContext";
+import { jsPDF } from "jspdf"
+import { useNavigate } from "react-router-dom";
 // import { useUser } from "../context/UserContext";
 function Payment() {
   const [message, setMessage] = useState("");
@@ -19,14 +21,14 @@ function Payment() {
   const [expiryYear, setExpiryYear] = useState("");
   const [cvv, setCvv] = useState("");
   // const { user } = useUser();
-  const {total } = useContext(CartContext);
+  const { total } = useContext(CartContext);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
-  
   const customizeid = queryParams.get("customizeid");
-  
+  const navigate = useNavigate();
+
   const handleCardNumberChange = (e) => {
     const input = e.target.value.replace(/\s/g, ""); // Remove any existing whitespace
     let formattedInput = "";
@@ -41,6 +43,35 @@ function Payment() {
 
     setCardNumber(formattedInput);
   };
+  function generateReceipt(payment) {
+    const doc = new jsPDF();
+
+    doc.text("Receipt", 10, 10);
+    doc.text(`Payment ID: ${payment._id}`, 10, 150);
+    doc.text(`Name: ${payment.name}`, 10, 20);
+    doc.text(`Address: ${payment.address}`, 10, 30);
+    doc.text(`Apartment: ${payment.apartment}`, 10, 40);
+    doc.text(`Town: ${payment.town}`, 10, 50);
+    doc.text(`Phone No: ${payment.phoneNo}`, 10, 60);
+    doc.text(`Email: ${payment.email}`, 10, 70);
+    doc.text(`Card Number: ${payment.cardNumber}`, 10, 80);
+    doc.text(`Expiry Month: ${payment.expiryMonth}`, 10, 90);
+    doc.text(`Expiry Year: ${payment.expiryYear}`, 10, 100);
+    doc.text(`CVV: ${payment.cvv}`, 10, 110);
+    doc.text(`Total: ${payment.total}`, 10, 120);
+    doc.text(
+      `Created At: ${new Date(payment.createdAt).toLocaleString()}`,
+      10,
+      130
+    );
+    doc.text(
+      `Updated At: ${new Date(payment.updatedAt).toLocaleString()}`,
+      10,
+      140
+    );
+
+    return doc;
+  }
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -59,7 +90,6 @@ function Payment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
 
     const confirmResult = await Swal.fire({
       title: "Confirm Payment",
@@ -71,21 +101,24 @@ function Payment() {
     });
     if (confirmResult.isConfirmed) {
       try {
-        const response = await axios.post("http://localhost:5000/sales/addpayment", {
-          name,
-          address,
-          apartment,
-          town,
-          phoneNo,
-          email,
-          cardNumber,
-          expiryMonth,
-          expiryYear,
-          cvv,
-          total
-        });
+        const response = await axios.post(
+          "http://localhost:5000/sales/addpayment",
+          {
+            name,
+            address,
+            apartment,
+            town,
+            phoneNo,
+            email,
+            cardNumber,
+            expiryMonth,
+            expiryYear,
+            cvv,
+            total,
+          }
+        );
 
-        if (response.data.message) {
+        if (response.data && response.data.message) {
           setName("");
           setAddress("");
           setApartment("");
@@ -98,25 +131,29 @@ function Payment() {
           setCvv("");
           setMessage(response.data.message);
           Swal.fire({
-            title: 'Payment Added',
+            title: "Payment Added",
             text: response.data.message,
-            icon: 'success',
-            confirmButtonText: 'OK'
+            icon: "success",
+            confirmButtonText: "OK",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate('/');
+              const doc = generateReceipt(response.data.newPayment);
+              doc.save("receipt.pdf");
+              navigate("/");
+            } else {
+              navigate("/");
             }
           });
         } else {
           Swal.fire({
-            title: 'Error',
+            title: "Error",
             text: response.data.message,
-            icon: 'error',
-            confirmButtonText: 'OK'
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
-          
-         // Handle the response as needed
+
+        // Handle the response as needed
       } catch (error) {
         if (error.response && error.response.data) {
           // Server-sent error message
@@ -227,7 +264,6 @@ function Payment() {
                 style={{ width: "470px", height: "50px" }}
               />
             </div>
-          
           </div>
         </div>
 
@@ -243,8 +279,7 @@ function Payment() {
                 <h5>Bank</h5>
               </label>
             </div>
-            <div>
-    </div>
+            <div></div>
             <div>
               <h2 class="mt-4">Payment Details</h2>
               <form>
