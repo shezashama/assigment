@@ -142,7 +142,8 @@ function EditProduct() {
   <div className="row">
     {/* Sidebar */}
     <div style={sidebar} className="col-lg-3 col-md-4">
-    <a style={sidebarA} href="#" className="active"><i className="fa-home fas"></i> Dashboard</a>
+                <Link to={'/admin'}><a style={sidebarA} className="active"><i className="fa-home fas"></i> Dashboard</a></Link>
+
                 <Link to={'/product'}><a style={sidebarA} href="#"><i className="fa-box fas"></i> Add Products</a></Link>
                 <Link to={'/allproduct'}><a style={sidebarA} href="#"><i className="fa-box fas"></i> View Products</a></Link>
                 <Link to={'/allSales'}><a style={sidebarA} href="#"><i className="fa-box fas"></i>View Sales</a></Link>

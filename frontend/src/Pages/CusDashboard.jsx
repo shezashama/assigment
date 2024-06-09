@@ -30,7 +30,8 @@ function CusDashboard() {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
             <div style={sidebar}>
-                <a style={sidebarA} href="#" className="active"><i className="fa-home fas"></i> Dashboard</a>
+                            <Link to={'/admin'}><a style={sidebarA} className="active"><i className="fa-home fas"></i> Dashboard</a></Link>
+
                 <a style={sidebarA} href="#"><i className="fa-shopping-cart fas"></i> Orders</a>
                 <a style={sidebarA} href="#"><i className="fa-user fas"></i> Profile</a>
                 <a style={sidebarA} href="#"><i className="fa-cog fas"></i> Settings</a>
