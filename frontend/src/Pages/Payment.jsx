@@ -270,7 +270,7 @@ function Payment() {
         <div className="col-lg-6 col-md-12 padding-style">
           <div>
             <div className="process-box-row">
-              <h3>Total: $ {total}</h3>
+              <h3>Total: Rs. {total}</h3>
             </div>
             <hr />
 

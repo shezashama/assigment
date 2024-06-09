@@ -66,7 +66,7 @@ function Header() {
                   </p>
                 </div>
                 <div className="text-center col-md-4 shipping-purchase">
-                  <p>Free shipping on a purchase value of $200</p>
+                  <p>Free shipping on a purchase value of Rs.10000</p>
                 </div>
                 <div className="col-sm-12 col-md-4 user-items">
                   <ul className="d-flex justify-content-end list-unstyled">
@@ -105,7 +105,7 @@ function Header() {
               <div className="d-flex align-items-center row">
                 <div className="col-lg-2 col-md-2">
                   <div className="main-logo">
-                    <a href="index.html">
+                    <a href="/">
                       <img
                         src="../../src/assets/images/Logo Iconics-01.png"
                         alt="logo" width="100px"
@@ -143,10 +143,10 @@ function Header() {
                           </ul>
                         </li>
 
-                        <li>
+                        <li className="menu-item">
                           <Link
                             to={"../AboutUs"}
-                            className="item-anchor"
+                            className="item-anchor "
                             data-effect="About"
                           >
                             About
@@ -263,7 +263,7 @@ function Header() {
                           </ul>
                         </li>
 
-                        <li>
+                        <li className="menu-item">
                           <Link
                             to={"../ContactUs"}
                             className="item-anchor"
@@ -280,6 +280,7 @@ function Header() {
             </div>
           </nav>
         </div>
+        <hr />
       </header>
     </>
   );

@@ -32,19 +32,19 @@ function ShopCart() {
                   <img src={item.img} alt={item.productName} className="cart-item-image" />
                   <div className="cart-item-details">
                     <h3>{item.productName}</h3>
-                    <p>Price: ${item.price}</p>
+                    <p>Price: Rs.{item.price}</p>
                     <div className="cart-item-quantity">
                       <button onClick={() => handleQuantityChange(item, -1)}>-</button>
                       <span>{item.quantity}</span>
                       <button onClick={() => handleQuantityChange(item, 1)}>+</button>
                     </div>
-                    <p>Subtotal: ${item.subtotal}</p>
+                    <p>Subtotal: Rs.{item.subtotal}</p>
                     <button onClick={() => removeFromCart(item._id)}>Remove</button>
                   </div>
                 </div>
               ))}
               <div className="cart-total">
-                <h3>Total: ${total}</h3>
+                <h3>Total: Rs.{total}</h3>
               </div>
               <div className='row d-flex justify-content-center'>
 

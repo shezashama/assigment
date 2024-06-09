@@ -135,19 +135,19 @@ function Shop() {
                                     <h5 className="widget-title">Filter By Price</h5>
                                     <ul className="list-unstyled product-tags sidebar-list">
                                         <li className="tags-item">
-                                            <a href="">Less than $10</a>
+                                            <a href="">Less than Rs.10</a>
                                         </li>
                                         <li className="tags-item">
-                                            <a href="">$10- $20</a>
+                                            <a href="">Rs.10- Rs.20</a>
                                         </li>
                                         <li className="tags-item">
-                                            <a href="">$20- $30</a>
+                                            <a href="">Rs.20- Rs.30</a>
                                         </li>
                                         <li className="tags-item">
-                                            <a href="">$30- $40</a>
+                                            <a href="">Rs.30- Rs.40</a>
                                         </li>
                                         <li className="tags-item">
-                                            <a href="">$40- $50</a>
+                                            <a href="">Rs.40- Rs.50</a>
                                         </li>
                                     </ul>
                                 </div>

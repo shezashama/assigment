@@ -9,13 +9,13 @@ function DiscountProductItem(props) {
                     <div className="d-flex justify-content-between align-items-center cart-button">
                         <button type="button" className="d-flex align-items-center btn-wrap cart-link">add to cart <i className="icon-arrow-io icon"></i>
                         </button>
-                        <button type="button" className="d-flex view-btn tooltip">
+                        {/* <button type="button" className="d-flex view-btn tooltip">
                             <i className="icon icon-screen-full"></i>
                             <span className="tooltip-text">Quick view</span>
                         </button>
                         <button type="button" className="wishlist-btn">
                             <i className="icon icon-heart"></i>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
                 <div className="discount">{props.discount} Off</div>
@@ -24,7 +24,7 @@ function DiscountProductItem(props) {
                         <a href={props.link}>{props.title}</a>
                     </h3>
                     <div className="item-price text-primary">
-                        <del className="prev-price">${props.prevprice}</del>${props.price}
+                        <del className="prev-price">Rs.{props.prevprice}</del>Rs.{props.price}
                     </div>
                 </div>
             </div>

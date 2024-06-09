@@ -1613,7 +1613,9 @@ blockquote cite {
       display: none;
     }
 }
-
+.shipping-purchase p{
+  font-size: 16px;
+}
 /* submenu */
 .stellarnav ul ul {
   background: var(--dark-color);
@@ -1899,7 +1901,17 @@ blockquote cite {
 .stellarnav a.dd-toggle .icon-plus:after, .stellarnav a.dd-toggle .icon-plus:before {
     border-bottom: solid 3px var(--light-color);
 }
+.primary-nav{
+  margin: 0px;
+  padding: 0px;
+}
 
+.container{
+  padding: 0px;
+}
+.menu-item{
+  font-size: 23px;
+}
 /*----- Billboard
 --------------------------------------------------------------*/
 #billboard {

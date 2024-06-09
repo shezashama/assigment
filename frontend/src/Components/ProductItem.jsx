@@ -37,20 +37,20 @@ function ProductItem({ img, imgAlt, link, title, price, _id, weight }) {
           >
             add to cart <i className="icon-arrow-io icon"></i>
           </button>
-          <button type="button" className="d-flex view-btn tooltip">
+          {/* <button type="button" className="d-flex view-btn tooltip">
             <i className="icon icon-screen-full"></i>
             <span className="tooltip-text">Quick view</span>
           </button>
           <button type="button" className="wishlist-btn">
             <i className="icon icon-heart"></i>
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="product-detail">
         <h3 className="product-title">
           <Link to={link}>{title}</Link>
         </h3>
-        <span className="item-price text-primary">${price}</span>
+        <span className="item-price text-primary">Rs.{price}</span>
       </div>
     </>
   );

@@ -121,7 +121,7 @@ function Home() {
               <div className="d-flex flex-wrap justify-content-between align-items-center section-header">
                 <h2 className="section-title">Featured Products</h2>
                 <div className="align-right btn-wrap">
-                  <a href="blog.html" className="d-flex align-items-center">
+                  <a href="/shop" className="d-flex align-items-center">
                     View All Products{" "}
                     <i className="icon-arrow-io icon icon"></i>
                   </a>
@@ -138,7 +138,7 @@ function Home() {
                         <ProductItem
                           img={product.image} // Use product.imageUrl if available
                           imgAlt={product.productName}
-                          link="single-product.html"
+                          // link="single-product.html"
                           title={product.productName}
                           price={product.price}
                           _id={product._id}
