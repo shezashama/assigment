@@ -107,8 +107,8 @@ function Header() {
                   <div className="main-logo">
                     <a href="index.html">
                       <img
-                        src="../../src/assets/images/main-logo.png"
-                        alt="logo"
+                        src="../../src/assets/images/Logo Iconics-01.png"
+                        alt="logo" width="100px"
                       />
                     </a>
                   </div>

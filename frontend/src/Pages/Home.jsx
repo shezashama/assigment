@@ -554,8 +554,8 @@ function Home() {
             <h2 className="section-title">Follow our instagram</h2>
           </div>
           <p>
-            Our official Instagram account <a href="#">@ultras</a> or{" "}
-            <a href="#">#ultras_clothing</a>
+            Our official Instagram account <a href="#">@IconicS</a> or{" "}
+            <a href="#">#IconicS_clothing</a>
           </p>
           <div className="d-flex flex-wrap justify-content-between row">
             <InstaPicCard link="../../src/assets/images/insta-image1.jpg" />

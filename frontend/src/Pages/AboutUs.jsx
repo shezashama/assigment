@@ -36,7 +36,7 @@ function AboutUs() {
                         <div className="col-lg-6 col-md-12">
                             <div className="detail">
                                 <div className="display-header">
-                                    <h2 className="section-title">How was Ultras Store started?</h2>
+                                    <h2 className="section-title">How was IconicS Store started?</h2>
                                     <p>Risus augue curabitur diam senectus congue velit et. Sed vitae metus nibh sit era. Nulla adipiscing pharetra pellentesque maecenas odio eros at. Et libero vulputate amet duis erat volutpat vitae eget. Sed vitae metus nibh sit era. Nulla adipiscing pharetra pellentesque maecenas odio eros at.
                                         <br />
                                         Sed vitae metus nibh sit era. Nulla adipiscing pharetra pellentesque maecenas odio eros at. Et libero vulputate amet duis erat volutpat vitae eget. Quam libero etiam et in ac at quis. Risus augue curabitur diam senectus congue velit et. </p>
@@ -151,7 +151,7 @@ function AboutUs() {
                     <div className="section-header">
                         <h2 className="section-title">Follow our instagram</h2>
                     </div>
-                    <p>Our official Instagram account <a href="#">@ultras</a> or <a href="#">#ultras_clothing</a>
+                    <p>Our official Instagram account <a href="#">@IconicS</a> or <a href="#">#IconicS_clothing</a>
                     </p>
                     <div className="d-flex flex-wrap justify-content-between row">
                         <InstaPicCard link="../../src/assets/images/insta-image1.jpg" />

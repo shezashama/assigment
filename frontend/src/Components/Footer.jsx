@@ -9,7 +9,7 @@ function Footer() {
           <div class="row d-flex flex-wrap justify-content-between">
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="footer-menu">
-                <h5 class="widget-title">Attire</h5>
+                <h5 class="widget-title">IconicS</h5>
                 <ul class="menu-list list-unstyled">
                   <li class="menu-item">
                     <a href="about.html">About us</a>
@@ -27,7 +27,7 @@ function Footer() {
                     <a href="#">Affiliate Programme</a>
                   </li>
                   <li class="menu-item">
-                    <a href="#">Attire</a>
+                    <a href="#">IconicS</a>
                   </li>
                 </ul>
               </div>
@@ -60,7 +60,7 @@ function Footer() {
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="footer-menu">
                 <h5 class="widget-title">Contact Us</h5>
-                <p>Do you have any questions or suggestions? <a href="#" class="email">shahamahaleem356@gmail.com</a>
+                <p>Do you have any questions or suggestions? <a href="#" class="email">iconics@gmail.com</a>
                 </p>
                 <p>Do you need assistance? Give us a call.
                   <strong>075552553</strong>
