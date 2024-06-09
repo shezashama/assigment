@@ -140,7 +140,7 @@ function Register() {
                         id="phone"
                         value={phoneNo}
                         onChange={(e) => setPhoneNo(e.target.value)}
-                        placeholder="Enter password"
+                        placeholder="Enter Phone number"
                       />
                     </div>
                     <div className="form-group">

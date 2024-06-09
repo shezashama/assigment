@@ -65,7 +65,11 @@ export const routes = [
     },
     {
         path: "/product",
-        element: <Product/>,
+        element: <Product/>
+    },
+    {
+        path: "/admin",
+        element: <AdminDashBoard/>
     },
 
     {
