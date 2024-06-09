@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
@@ -8,8 +8,28 @@ import InstaPicCard from '../Components/InstaPicCard'
 import PageSwitcher from '../Components/PageSwitcher'
 import ProductItem from '../Components/ProductItem'
 import SmallCardSet from '../Components/SmallCardSet'
+import axios from 'axios'
+import { useUser } from "../context/UserContext";
 
 function Shop() {
+    const [product, setProduct] = useState([]);
+    const { user } = useUser();
+    console.log(user);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost:5000/product/getAll"
+          );
+          setProduct(response.data); // Assuming the response contains the array of vehicles
+        } catch (error) {
+          console.error("Error fetching data: ", error);
+          // Handle errors here, for example, by setting an error state
+        }
+      };
+  
+      fetchData();
+    }, []);
     return (
         <>
             <Header />
@@ -32,176 +52,34 @@ function Shop() {
                                     <li data-tab-target="#jackets" className="tab">Jackets</li>
                                     <li data-tab-target="#accessories" className="tab">Accessories</li>
                                 </ul>
+                               
                                 <div className="tab-content">
-                                    <div id="all" data-tab-content className="active">
-                                        <div className="d-flex flex-wrap row">
-                                            <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                                <ProductItem
-                                                    img="../../src/assets/images/selling-products1.jpg"
-                                                    imgAlt="Books"
-                                                    link="single-product.html"
-                                                    title="Half sleeve T-shirt"
-                                                    price="40.00"
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                                <ProductItem
-                                                    img="../../src/assets/images/selling-products2.jpg"
-                                                    imgAlt="Books"
-                                                    link="single-product.html"
-                                                    title="Half sleeve T-shirt"
-                                                    price="40.00"
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                                <ProductItem
-                                                    img="../../src/assets/images/selling-products3.jpg"
-                                                    imgAlt="Books"
-                                                    link="single-product.html"
-                                                    title="Half sleeve T-shirt"
-                                                    price="40.00"
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                                <ProductItem
-                                                    img="../../src/assets/images/selling-products4.jpg"
-                                                    imgAlt="Books"
-                                                    link="single-product.html"
-                                                    title="Half sleeve T-shirt"
-                                                    price="40.00"
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                                <ProductItem
-                                                    img="../../src/assets/images/selling-products5.jpg"
-                                                    imgAlt="Books"
-                                                    link="single-product.html"
-                                                    title="Half sleeve T-shirt"
-                                                    price="40.00"
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products6.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                                />
-                                                </div>
-                                                <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products7.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                                    />
-                                                    </div>
-                                                    <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="shoes" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="tshirts" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                                />
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="pants" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="hoodie" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="outer" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="jackets" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="accessories" data-tab-content>
-                                        <div className="d-flex flex-wrap row">
-                                        <div className="col-sm-6 col-lg-4 col-md-6 product-item">
-                                            <ProductItem
-                                                img="../../src/assets/images/selling-products8.jpg"
-                                                imgAlt="Books"
-                                                link="single-product.html"
-                                                title="Half sleeve T-shirt"
-                                                price="40.00"
-                                            />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                  <div id="all" data-tab-content className="active">
+                    <div className="d-flex flex-wrap row">
+                      {product.map((product, index) => (
+                        <div
+                          className="col-sm-6 col-lg-3 col-md-6 product-item"
+                          key={index}
+                        >
+                          <ProductItem
+                            img={product.image} // Use product.imageUrl if available
+                            imgAlt={product.productName}
+                            link="single-product.html"
+                            title={product.productName}
+                            price={product.price}
+                            _id={product._id}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
                                 <PageSwitcher />
                             </div>
                         </section>
